@@ -1,0 +1,7 @@
+<div class="nested-fields">
+  <%= f.collection_select :product_id, f.object.selectable_products, :id, :name %>
+  <%= f.text_field :unit_price %>
+  <%= f.text_field :quantity %>
+  <%= f.object.price %>
+  <%= link_to_remove_association '削除する', f %>
+</div>

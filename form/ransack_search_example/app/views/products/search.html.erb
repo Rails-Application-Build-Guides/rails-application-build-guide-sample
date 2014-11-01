@@ -1,0 +1,32 @@
+<% content_for(:title) do %>
+  商品検索
+<% end %>
+
+<%= search_form_for(@q, url: search_products_path, html: { method: :get, class: 'form-horizontal', role: 'form' }) do |f| %>
+  <%= render 'search_form', f: f %>
+<% end %>
+
+<%= render layout: 'shared/search_result_box' do %>
+  <table class="table table-list ">
+  <thead>
+    <tr>
+      <th>販売状況</th>
+      <th>商品コード</th>
+      <th>商品名</th>
+      <th>販売価格</th>
+      <th>仕入原価</th>
+    </tr>
+  </thead>
+  <% @products.each do |product| %>
+  <tbody>
+  <tr>
+    <td><%= product.sales_condition %> </td>
+    <td><%= product.code %></td>
+    <td><%= product.name %></td>
+    <td><%= product.display_price %></td>
+    <td><%= product.display_purchase_cost %></td>
+  </tr>
+  </tbody>
+<% end %>
+</table>
+<% end %>

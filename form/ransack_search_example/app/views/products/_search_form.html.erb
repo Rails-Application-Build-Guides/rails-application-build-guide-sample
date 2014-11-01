@@ -1,0 +1,74 @@
+<%= render layout: 'shared/search_box' do %>
+
+<div class="row">
+<div class="col-sm-6">
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="">商品コード</label>
+    <div class="col-sm-8">
+      <%= f.text_field :code_cont, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="">商品名</label>
+    <div class="col-sm-8">
+      <%= f.text_field :name_cont, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="">商品名カナ</label>
+    <div class="col-sm-8">
+      <%= f.text_field :name_kana_cont, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for=""></label>
+    <div class="col-sm-6">
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :availability_true %>
+          販売中のみ
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-6">
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="">最低商品価格</label>
+    <div class="col-sm-8">
+      <%= f.text_field :price_gteq, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="">最高商品価格</label>
+    <div class="col-sm-8">
+      <%= f.text_field :price_lteq, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="">最低仕入原価</label>
+    <div class="col-sm-8">
+      <%= f.text_field :purchase_cost_gteq, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="">最高仕入原価</label>
+    <div class="col-sm-8">
+      <%= f.text_field :purchase_cost_lteq, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-12 row text-center">
+  <%= link_to products_path, class: 'btn btn-default btn-left' do %>クリア<% end %>
+  <button class="btn btn-default btn-primary" type="submit"><i class="fa fa-search"></i> 検索</button>
+</div>
+
+</div>
+
+<% end %>

@@ -1,0 +1,59 @@
+<% content_for(:title) do %>
+  商品一括登録
+<% end %>
+
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="row">
+<div class="col-sm-12">
+
+<%= render 'errors', form: @form %>
+
+<%= form_for(@form, url: products_path, method: :post) do |fb| %>
+<table class="table">
+<thead>
+  <tr>
+    <th width="60px">登録</th>
+    <th>商品コード</th>
+    <th>商品名</th>
+    <th>商品名カナ</th>
+    <th>販売価格</th>
+    <th>仕入原価</th>
+  </tr>
+</thead>
+<tbody class="bulk-registration-form">
+<%= fb.fields_for :products do |f| %>
+  <tr class="item">
+  <td class="text-center">
+  <%= f.check_box :register, class: 'top10 registration-checkbox' %>
+  </td>
+  <td>
+  <%= f.text_field :code, class: 'form-control' %>
+  </td>
+  <td>
+  <%= f.text_field :name, class: 'form-control' %>
+  </td>
+  <td>
+  <%= f.text_field :name_kana, class: 'form-control' %>
+  </td>
+  <td>
+  <%= f.text_field :price, class: 'form-control' %>
+  </td>
+  <td>
+  <%= f.text_field :purchase_cost, class: 'form-control' %>
+  </td>
+</tr>
+<% end %>
+</tbody>
+</table>
+
+<div class="text-center">
+<%= fb.submit '一括登録', class: 'btn btn-primary' %>
+</div>
+
+<% end %>
+
+</div><!-- /col-sm-12 -->
+</div><!-- /row -->
+</div><!-- /panel-body -->
+</div><!-- /panel -->

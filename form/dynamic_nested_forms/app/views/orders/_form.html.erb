@@ -1,0 +1,12 @@
+<%= form_for(@order, url: path, method: method) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.collection_select :corporation_id, f.object.selectable_corporations, :id, :name %>
+
+  <%= f.fields_for :order_details do |od| %>
+    <%= render 'order_detail_fields', f: od %>
+  <% end %>
+
+  <%= link_to_add_association '追加する', f, :order_details %>
+
+  <%= f.submit %>
+<% end %>
