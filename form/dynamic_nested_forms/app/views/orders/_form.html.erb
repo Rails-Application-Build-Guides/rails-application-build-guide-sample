@@ -1,12 +1,72 @@
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="row">
+<div class="col-sm-12">
+
 <%= form_for(@order, url: path, method: method) do |f| %>
-  <%= f.text_field :name %>
-  <%= f.collection_select :corporation_id, f.object.selectable_corporations, :id, :name %>
+  <div class="col-sm-6">
+  <div class="form-group">
+    <label class="control-label" for="">受注名称</label>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="form-group">
+    <label class="control-label" for="">取引先</label>
+    <%= f.collection_select :corporation_id, f.object.selectable_corporations, :id, :name, {}, class: 'form-control' %>
+  </div>
+  </div>
+  <div class="col-sm-12">
+    <hr>
+    <b>受注明細</b>
+    <div class="text-right">
+      <%= link_to_add_association '明細を追加', f, :order_details,
+        class: 'btn btn-default',
+        data: {
+          association_insertion_node: '#detail-association-insertion-point',
+          association_insertion_method: 'append' }
+       %>
+    </div>
 
-  <%= f.fields_for :order_details do |od| %>
-    <%= render 'order_detail_fields', f: od %>
-  <% end %>
+    <table class="table table-list">
+    <thead>
+      <tr>
+        <th>商品</th>
+        <th>単価</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+    </thead>
 
-  <%= link_to_add_association '追加する', f, :order_details %>
+    <tbody id='detail-association-insertion-point'>
+    <div class="form-group">
+    <%= f.fields_for :order_details do |od| %>
+      <%= render 'order_detail_fields', f: od %>
+    <% end %>
+    </div>
+    </tbody>
+    </table>
 
-  <%= f.submit %>
+    <hr>
+
+    <div class="col-sm-9">
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label class="control-label" for="">受注額合計</label>
+        <%= f.text_field :price, class: 'form-control total',
+          disabled: true,
+          value: number_to_currency(f.object.price) %>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+  <%= f.submit '登録', class: 'btn btn-primary' %>
+  </div>
 <% end %>
+
+</div><!-- /col-sm-12 -->
+</div><!-- /row -->
+</div><!-- /panel-body -->
+</div><!-- /panel -->

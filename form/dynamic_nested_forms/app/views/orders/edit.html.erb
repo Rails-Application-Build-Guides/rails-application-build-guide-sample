@@ -1,6 +1,5 @@
-<h1>Editing order</h1>
+<% content_for(:title) do %>
+  受注編集
+<% end %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+<%= render 'form', path: order_path(@order), method: :put %>

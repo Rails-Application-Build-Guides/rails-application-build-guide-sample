@@ -1,7 +1,18 @@
-<div class="nested-fields">
-  <%= f.collection_select :product_id, f.object.selectable_products, :id, :name %>
-  <%= f.text_field :unit_price %>
-  <%= f.text_field :quantity %>
-  <%= f.object.price %>
-  <%= link_to_remove_association '削除する', f %>
-</div>
+<tr class="nested-fields">
+  <%= f.hidden_field :id %>
+  <td>
+  <%= f.collection_select :product_id, f.object.selectable_products, :id, :name, {}, class: 'form-control' %>
+  </td>
+  <td>
+  <%= f.text_field :unit_price, class: 'form-control unit-price' %>
+  </td>
+  <td>
+  <%= f.text_field :quantity, class: 'form-control quantity' %>
+  </td>
+  <td>
+    <%= f.text_field :price, class: 'form-control subtotal', disabled: true %>
+  </td>
+  <td>
+  <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
+  </td>
+</tr>

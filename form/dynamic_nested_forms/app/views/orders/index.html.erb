@@ -1,23 +1,7 @@
-<h1>Listing orders</h1>
+<% content_for(:title) do %>
+  受注一覧
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Order', new_order_path %>
+<%= search_form_for(@q, url: search_orders_path, html: { method: :get, class: 'form-horizontal', role: 'form' }) do |f| %>
+  <%= render 'search_form', f: f %>
+<% end %>

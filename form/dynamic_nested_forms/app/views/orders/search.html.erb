@@ -1,0 +1,34 @@
+<% content_for(:title) do %>
+  受注一覧
+<% end %>
+
+<%= search_form_for(@q, url: search_orders_path, html: { method: :get, class: 'form-horizontal', role: 'form' }) do |f| %>
+  <%= render 'search_form', f: f %>
+<% end %>
+
+<%= render layout: 'shared/search_result_box' do %>
+  <table class="table table-list ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>受注名称</th>
+      <th>取引先名</th>
+      <th>受注価格</th>
+      <th>登録日</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @orders.each do |order| %>
+  <tbody>
+  <tr>
+    <td><%= order.id %> </td>
+    <td><%= order.name %> </td>
+    <td><%= order.corporation.name %></td>
+    <td><%= number_to_currency order.price %></td>
+    <td><%= order.created_at %></td>
+    <td><%= link_to '編集', edit_order_path(order), class: 'btn btn-default' %>
+  </tr>
+  </tbody>
+<% end %>
+</table>
+<% end %>

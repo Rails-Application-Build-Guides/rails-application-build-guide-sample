@@ -1,11 +1,13 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:edit, :update]
 
   def index
-    @orders = Order.all
+    @q = Order.search
   end
 
-  def show
+  def search
+    @q = Order.search(search_params)
+    @orders = @q.result.preload(:corporation)
   end
 
   def new
@@ -13,34 +15,42 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    @order = Form::Order.find(params[:id])
   end
 
   def create
     @order = Form::Order.new(order_params)
     if @order.save
-      redirect_to @order, notice: 'Order was successfully created.'
+      redirect_to orders_path, notice: "受注 #{@order.name} を登録しました。"
     else
       render :new
     end
   end
 
   def update
-    if @order.update(order_params)
-      redirect_to @order, notice: 'Order was successfully updated.'
+    if @order.update_attributes(order_params)
+      redirect_to orders_path, notice: "受注 #{@order.name} を更新しました。"
     else
       render :edit
     end
   end
 
   def destroy
-    @order.destroy
-    redirect_to orders_url, notice: 'Order was successfully destroyed.'
+    Order.find(params[:id]).destroy
+    redirect_to orders_url, notice: '受注を削除しました。'
   end
 
   private
 
   def set_order
-    @order = Order.find(params[:id])
+    @order = Form::Order.find(params[:id])
+  end
+
+  def search_params
+    search_conditions = %i(
+      name_cont corporation_name_cont price_gteq price_lteq
+    )
+    params.require(:q).permit(search_conditions)
   end
 
   def order_params
@@ -48,7 +58,7 @@ class OrdersController < ApplicationController
       .require(:form_order)
       .permit(
         Form::Order::REGISTRABLE_ATTRIBUTES +
-        [order_details: Form::OrderDetail::REGISTRABLE_ATTRIBUTES]
+        [order_details_attributes: Form::OrderDetail::REGISTRABLE_ATTRIBUTES]
       )
   end
 end

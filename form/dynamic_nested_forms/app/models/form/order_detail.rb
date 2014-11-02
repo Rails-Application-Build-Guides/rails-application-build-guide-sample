@@ -13,7 +13,7 @@
 #
 
 class Form::OrderDetail < OrderDetail
-  REGISTRABLE_ATTRIBUTES = %i(product_id unit_price quantity _destroy)
+  REGISTRABLE_ATTRIBUTES = %i(id product_id unit_price quantity _destroy)
 
   def selectable_products
     Product.all

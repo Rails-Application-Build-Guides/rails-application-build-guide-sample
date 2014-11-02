@@ -13,9 +13,8 @@
 class Form::Order < Order
   REGISTRABLE_ATTRIBUTES = %i(name corporation_id price)
   has_many :order_details, class_name: 'Form::OrderDetail'
-  accepts_nested_attributes_for :order_details, allow_destroy: true
 
-  after_initialize { order_details.build unless order_details.present? }
+  after_initialize { order_details.build unless self.persisted? || order_details.present? }
   before_validation :calculate_order_price
 
   def selectable_corporations
