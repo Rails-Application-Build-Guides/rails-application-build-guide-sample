@@ -1,0 +1,81 @@
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="row">
+<div class="col-sm-12">
+
+<%= form_for(@product, url: path, method: method) do |f| %>
+  <div class="col-sm-6">
+  <div class="form-group">
+    <label class="control-label" for="">商品コード</label>
+    <%= f.text_field :code, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="">商品名</label>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="">商品名カナ</label>
+    <%= f.text_field :name_kana, class: 'form-control' %>
+  </div>
+  </div>
+
+  <div class="col-sm-6">
+  <div class="form-group">
+    <label class="control-label" for="">商品価格</label>
+    <%= f.text_field :price, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="">仕入原価</label>
+    <%= f.text_field :purchase_cost, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :availability, {}, 'true', 'false' %>
+        販売可否
+      </label>
+    </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="col-sm-12">
+    <hr>
+    <b>商品カテゴリ</b>
+    <div class="text-right">
+      <%= link_to_add_association 'カテゴリを追加', f, :product_categories,
+        class: 'btn btn-default',
+        data: {
+          association_insertion_node: '#detail-association-insertion-point',
+          association_insertion_method: 'append' }
+       %>
+    </div>
+
+    <table class="table table-list">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody id='detail-association-insertion-point'>
+    <div class="form-group">
+    <%= f.fields_for :product_categories do |od| %>
+      <%= render 'product_category_fields', f: od %>
+    <% end %>
+    </div>
+    </tbody>
+    </table>
+  </div>
+
+  <div class="text-center">
+  <%= f.submit '登録', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+</div><!-- /col-sm-12 -->
+</div><!-- /row -->
+</div><!-- /panel-body -->
+</div><!-- /panel -->

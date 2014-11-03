@@ -1,0 +1,9 @@
+<tr class="nested-fields">
+  <%= f.hidden_field :id %>
+  <td>
+  <%= f.collection_select :category_id, f.object.selectable_categories, :id, :name, {}, class: 'form-control' %>
+  </td>
+  <td>
+  <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
+  </td>
+</tr>
