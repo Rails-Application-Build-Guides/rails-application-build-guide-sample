@@ -1,0 +1,65 @@
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="row">
+<div class="col-sm-12">
+
+<%= form_for(@product, url: path, method: method) do |f| %>
+  <div class="col-sm-6">
+  <div class="form-group">
+    <label class="control-label" for="">商品コード</label>
+    <%= f.text_field :code, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="">商品名</label>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="">商品名カナ</label>
+    <%= f.text_field :name_kana, class: 'form-control' %>
+  </div>
+  </div>
+
+  <div class="col-sm-6">
+  <div class="form-group">
+    <label class="control-label" for="">商品価格</label>
+    <%= f.text_field :price, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="">仕入原価</label>
+    <%= f.text_field :purchase_cost, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :availability, {}, 'true', 'false' %>
+        販売可否
+      </label>
+    </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="form-group">
+      <label class="control-label" for="">商品カテゴリ</label>
+      <div class="checkbox form-inline">
+      <% f.object.selectable_categories.each do |category| %>
+        <%= f.label :category_ids, value: category.id, class: 'checkbox' do %>
+          <%= f.check_box :category_ids, { multiple: true }, category.id, nil %>
+          <%= category.name %>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+  <%= f.submit '登録', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+</div><!-- /col-sm-12 -->
+</div><!-- /row -->
+</div><!-- /panel-body -->
+</div><!-- /panel -->
