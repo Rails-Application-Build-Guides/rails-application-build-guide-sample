@@ -14,14 +14,10 @@
 #
 
 class Form::Product < Product
-  include HabtmReservedUpdatable
-
   REGISTRABLE_ATTRIBUTES = %i(
     code name name_kana price purchase_cost availability
   )
   REGISTRABLE_RELATIONS = [category_ids: []]
-
-  has_and_belongs_to_many_reserved_update :categories, through: :product_categories
 
   def selectable_categories
     Category.all

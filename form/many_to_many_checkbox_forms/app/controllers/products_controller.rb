@@ -30,8 +30,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Form::Product.find(params[:id])
-    @product.attributes = product_params
-    if @product.save
+    if @product.update_attributes(product_params)
       redirect_to products_path, notice: "商品 #{@product.name} を更新しました。"
     else
       render :edit
