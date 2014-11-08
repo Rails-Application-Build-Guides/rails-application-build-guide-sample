@@ -1,0 +1,5 @@
+<% content_for(:title) do %>
+  商品更新
+<% end %>
+
+<%= render 'form', path: product_path(@product), method: :put %>

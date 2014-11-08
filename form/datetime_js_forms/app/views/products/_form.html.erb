@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="row">
+<div class="col-sm-12">
+
+<%= form_for(@product, url: path, method: method) do |f| %>
+  <div class="col-sm-12">
+  <div class="form-group">
+    <label class="control-label" for="">商品名</label>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group form-inline">
+    <label class="control-label" for="">入荷予定日</label>
+    <%= f.text_field :arrival_date, class: 'form-control date-picker' %>
+  </div>
+  <div class="form-group form-inline">
+    <label class="control-label" for="">商品公開予定日時</label>
+    <%= f.text_field :published_at_date, class: 'form-control date-picker' %>
+    <%= f.select :published_at_hour, (0..23).to_a.map { |v| "%02d" % v }, {}, class: 'form-control' %> :
+    <%= f.select :published_at_minute, (0..59).to_a.map { |v| "%02d" % v }, {}, class: 'form-control' %>
+  </div>
+  </div>
+
+  <div class="col-sm-12">
+  <div class="text-center">
+  <%= f.submit '登録', class: 'btn btn-primary' %>
+  </div>
+  </div>
+<% end %>
+
+</div><!-- /col-sm-12 -->
+</div><!-- /row -->
+</div><!-- /panel-body -->
+</div><!-- /panel -->
