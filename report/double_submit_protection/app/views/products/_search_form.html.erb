@@ -66,7 +66,9 @@
 
 <div class="col-sm-12 row text-center">
   <%= link_to products_path, class: 'btn btn-default btn-left' do %>クリア<% end %>
-  <button class="btn btn-default btn-primary" type="submit"><i class="fa fa-search"></i> 検索</button>
+  <%= f.button class: 'btn btn-default btn-primary' do %>
+    <i class="fa fa-search"></i> 検索
+  <% end %>
 
   <div class="text-right">
     <%= f.button class: 'btn btn-default', name: 'export_csv' do %>
