@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: form_example_development
+  database: rails_build_guide_development
   pool: 5
   timeout: 5000
   username: root
@@ -11,7 +11,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: form_example_test
+  database: rails_build_guide_test
   pool: 5
   timeout: 5000
   username: root
@@ -21,7 +21,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: form_example
+  database: rails_build_guide
   pool: 5
   timeout: 5000
   username: root
