@@ -1,0 +1,29 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: rails_build_guide_development
+  pool: 5
+  timeout: 5000
+  username: root
+  password:
+  collation: utf8_bin
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: rails_build_guide_test
+  pool: 5
+  timeout: 5000
+  username: root
+  password:
+  collation: utf8_bin
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: rails_build_guide
+  pool: 5
+  timeout: 5000
+  username: root
+  password:
+  collation: utf8_bin

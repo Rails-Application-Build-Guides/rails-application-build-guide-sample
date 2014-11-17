@@ -1,7 +1,5 @@
 <% content_for(:title) do %>
-  商品検索
+  商品CSV出力
 <% end %>
 
-<%= search_form_for(@q, url: search_products_path, html: { method: :get, class: 'form-horizontal', role: 'form' }) do |f| %>
-  <%= render 'search_form', f: f %>
-<% end %>
+<%= link_to 'CSV出力', export_csv_products_path, class: 'btn btn-default' %>

@@ -1,0 +1,7 @@
+<% content_for(:title) do %>
+  商品検索
+<% end %>
+
+<%= search_form_for(@q, url: search_products_path, html: { method: :get, class: 'form-horizontal', role: 'form' }) do |f| %>
+  <%= render 'search_form', f: f %>
+<% end %>
