@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Rails Application Build Guides" %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body>
+
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="">Railsアプリケーション構築ガイド</a>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+              <%= render 'shared/topnav_link' %>
+            </ul>
+          </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <% if content_for?(:title) %><h1><%= yield :title %></h1><% end %>
+      <div class="row">
+        <div class="col-lg-12">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+      </div><!--/row-->
+
+      <hr />
+
+      <footer>
+        <p>&copy; Railsアプリケーション構築ガイド 2015</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
