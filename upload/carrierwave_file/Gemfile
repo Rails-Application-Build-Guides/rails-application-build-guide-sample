@@ -1,0 +1,31 @@
+source 'https://rubygems.org'
+
+gem 'rails', '4.1.0'
+gem 'mysql2' # Use Mysql
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'therubyracer',  platforms: :ruby
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'jbuilder', '~> 2.0'
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'spring', group: :development
+gem 'twitter-bootstrap-rails'
+gem 'therubyracer',  platforms: :ruby
+gem 'migration_comments'
+gem 'foreigner'
+gem 'carrierwave'
+
+group :development do
+  gem 'annotate'
+end
+
+group :development, :test do
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+end
